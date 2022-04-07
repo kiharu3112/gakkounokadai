@@ -183,24 +183,36 @@ class Mouse < Sprite
     self.image = Image.new($pen_size, $pen_size).circle_fill($pen_size / 2, $pen_size / 2, $pen_size / 2, Window.bgcolor) if $pen_statue == :eraser
   end
 end
-
-Window.load_resources do
-  pallet = Pallet.new
-  mouse = Mouse.new
-  init
-  canvas = Canvas.new
-  Window.loop do
-
-    if Input.key_down?(K_LSHIFT)
-    else
-       canvas.update(mouse)
-    end 
-    canvas.draw
-    mouse.update
-    pallet.draw(mouse, canvas)
-    
-    mouse.draw
-    draw_line
-
+class Game
+  def initialize
+    @mouse = Mouse.new
+    @canvas = Canvas.new
+    @pallet = Pallet.new
   end
+  def draw_line
+    def draw_line
+      Window.draw(0,                 0, Image.new(Window.width, 3, C_BLACK))
+      Window.draw(0, Window.height - 3, Image.new(Window.width, 3, C_BLACK))
+      Window.draw(0,                 0, Image.new(3, Window.height, C_BLACK))
+      Window.draw(Window.width - 3,  0, Image.new(3, Window.height, C_BLACK))
+    end
+  end
+  def run
+    Window.loop do
+      if Input.key_down?(K_LSHIFT)
+      else
+         @canvas.update(@mouse)
+      end 
+      @canvas.draw
+      @mouse.update
+      @pallet.draw(@mouse, @canvas)
+      @mouse.draw
+      draw_line
+    end
+  end
+end
+Window.load_resources do
+  init
+  game = Game.new
+  game.run  
 end
