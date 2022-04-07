@@ -190,7 +190,6 @@ Window.load_resources do
   init
   canvas = Canvas.new
   Window.loop do
-    draw_line
 
     if Input.key_down?(K_LSHIFT)
     else
@@ -201,5 +200,7 @@ Window.load_resources do
     pallet.draw(mouse, canvas)
     
     mouse.draw
+    draw_line
+
   end
 end
