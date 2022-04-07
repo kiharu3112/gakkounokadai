@@ -161,7 +161,7 @@ class Canvas
     end
 
     if Input.mouse_down?(M_LBUTTON)
-      @colors << Sprite.new(mouse.x, mouse.y,mouse.image)
+      @colors << Sprite.new(mouse.x, mouse.y, mouse.image)
     end
   end
   def draw
@@ -179,7 +179,8 @@ class Mouse < Sprite
   def update
     self.x = Input.mouse_pos_x - $pen_size / 2
     self.y = Input.mouse_pos_y - $pen_size / 2
-    self.image = Image.new($pen_size, $pen_size).circle_fill($pen_size / 2, $pen_size / 2, $pen_size / 2, $pen_color)
+    self.image = Image.new($pen_size, $pen_size).circle_fill($pen_size / 2, $pen_size / 2, $pen_size / 2, $pen_color)     if $pen_statue == :marker
+    self.image = Image.new($pen_size, $pen_size).circle_fill($pen_size / 2, $pen_size / 2, $pen_size / 2, Window.bgcolor) if $pen_statue == :eraser
   end
 end
 
