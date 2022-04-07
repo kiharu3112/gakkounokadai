@@ -179,7 +179,7 @@ class Mouse < Sprite
   def update
     self.x = Input.mouse_pos_x - $pen_size / 2
     self.y = Input.mouse_pos_y - $pen_size / 2
-    self.image = Image.new($pen_size, $pen_size).circle_fill($pen_size / 2, $pen_size / 2, $pen_size / 2, $pen_color)     if $pen_statue == :marker
+    self.image = Image.new($pen_size, $pen_size).circle_fill($pen_size / 2, $pen_size / 2, $pen_size / 2, $pen_color) if $pen_statue == :marker
     self.image = Image.new($pen_size, $pen_size).circle_fill($pen_size / 2, $pen_size / 2, $pen_size / 2, Window.bgcolor) if $pen_statue == :eraser
   end
 end
